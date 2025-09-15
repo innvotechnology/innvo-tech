@@ -1,274 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Innvotech Solutions - Web Development Startup</title>
   <style>
-    
     html {
-    scroll-behavior: smooth;
+      scroll-behavior: smooth;
     }
 
-    /* --- Make Images & Videos Responsive --- */
-img, video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* --- Responsive Text Scaling --- */
-.hero h2 { font-size: 2.5rem; }   /* default */
-.hero p { font-size: 1rem; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      line-height: 1.6;
+    }
 
-/* --- Media Queries --- */
-@media (max-width: 992px) {
-  nav { flex-direction: column; padding: 10px 20px; }
-  nav ul { flex-direction: column; margin-top: 10px; }
-  nav ul li { margin: 10px 0; }
-  .hero { padding: 70px 20px; }
-  .hero h2 { font-size: 2rem; }
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-@media (max-width: 768px) {
-  .hero { padding: 60px 15px; }
-  .hero h2 { font-size: 1.8rem; }
-  .hero p { font-size: 0.95rem; }
-  .services, .projects, .about { padding: 50px 20px; }
-  .project img { height: 150px; }
-}
-
-@media (max-width: 480px) {
-  .hero h2 { font-size: 1.5rem; }
-  .hero p { font-size: 0.85rem; }
-  .btn { padding: 10px 20px; font-size: 0.9rem; }
-  .service-cards, .project-cards {
-    grid-template-columns: 1fr;  /* stack cards vertically */
-  }
-  nav ul { text-align: center; }
-}
-
-    
-    /* --- Reset & Fonts --- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; background: #0f0f0f; color: #fff; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-
-    /* --- Navbar --- */
+    /* Navbar */
     nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 40px; position: sticky; top: 0; z-index: 1000;
-      background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
     }
-    nav .logo img { height: 45px; width: auto; display: block; }
-    nav ul { display: flex; list-style: none; }
-    nav ul li { margin-left: 25px; }
-    nav ul li a:hover { color: #7c3aed; transition: 0.3s; }
 
-/* --- Hamburger Icon --- */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #fff;
-}
+    .logo img {
+      height: 45px;
+    }
 
-/* --- Mobile Sidebar Menu --- */
-#nav-links {
-  display: flex;
-  list-style: none;
-}
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
 
-@media (max-width: 768px) {
-  .hamburger { display: block; }
-
-  #nav-links {
-    position: fixed;
-    right: -100%;  /* hidden */
-    top: 0;
-    width: 250px;
-    height: 100vh;
-    background: #111;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    transition: right 0.3s ease-in-out;
-  }
-
-  #nav-links.show {
-    right: 0;  /* slide in */
-  }
-
-  #nav-links li a {
-    font-size: 18px;
-    padding: 10px;
-    color: #fff;
-  }
-}
-    .navbar {
-  display: flex;
-  justify-content: space-between; /* logo left, menu right */
-  align-items: center;            /* vertically center */
-  padding: 10px 20px;
-}
-
-
-    /* --- Hero Section --- */
-    .hero {
-  text-align: center; 
-  padding: 100px 20px;
-  background: linear-gradient(135deg, rgba(255, 253, 253, 0.0), rgba(17,17,17,0.9)), 
-              url("background.png");  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  border-radius: 15px;
-}
-
-    .hero h2 { font-size: 50px; margin-bottom: 20px; }
-    .hero span { color: #7c3aed; }
-    .hero p { font-size: 18px; color: #bbb; margin-bottom: 30px; }
-    .btn {
-      background: #7c3aed; padding: 12px 25px; border-radius: 30px;
-      color: #fff; font-weight: bold; border: none; cursor: pointer;
+    .nav-links li a {
+      font-weight: 500;
       transition: 0.3s;
     }
-    .btn:hover { background: #9f67ff; }
 
-    /* --- Sections --- */
-    section { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
-    section.show { opacity: 1; transform: translateY(0); }
+    .nav-links li a:hover {
+      color: #7c3aed;
+    }
 
-    /* --- Services Section --- */
-    .services { padding: 80px 40px;
-        border-radius: 10px;
-         background: #000000; text-align: center; }
-    .services h3 { font-size: 32px; margin-bottom: 40px; }
-    .service-cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
     }
-    .card {
-      background: #222; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: translateY(-10px); }
-    .card h4 { margin-bottom: 15px; color: #7c3aed; }
 
-    /* --- Projects Section --- */
-    .projects { padding: 80px 40px;
-        border-radius: 5px; text-align: center; background: #101010; }
-    .projects h3 { font-size: 32px; margin-bottom: 40px; }
-    .project-cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .project {
-      background: #222; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-      transition: transform 0.3s;
-    }
-    .project:hover { transform: scale(1.05); }
-    .project img { width: 100%; height: 180px; object-fit: cover; }
-    .project .info { padding: 20px; text-align: left; }
-    .project h4 { color: #7c3aed; margin-bottom: 10px; }
-
-    /* --- About Section --- */
-    .about { padding: 80px 40px; text-align: center; }
-    .about h3 { font-size: 32px; margin-bottom: 20px; }
-    .about p { max-width: 700px; margin: auto; color: #bbb; }
-
-    /* --- Footer --- */
-    footer {
-      background: #111; padding: 30px; text-align: center; font-size: 14px; color: #aaa;
-    }
-    footer p { margin: 5px 0; }
+    /* Mobile menu */
     .mobile-menu {
-  display: none;
-  flex-direction: column;
-  background: black;
-  position: absolute;
-  top: 60px; /* navbar height */
-  right: 0;
-  width: 200px;
-  transition: all 0.3s ease;
-}
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 250px;
+      height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      padding-top: 80px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
 
-.mobile-menu.open {
-  display: flex;
-}
+    .mobile-menu a {
+      padding: 15px 25px;
+      border-bottom: 1px solid #222;
+      color: #fff;
+      font-size: 18px;
+    }
 
+    .mobile-menu a:hover {
+      background: #222;
+    }
+
+    .mobile-menu.open {
+      right: 0;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.6),
+          rgba(17, 17, 17, 0.9)
+        ),
+        url("background.png");
+      background-size: cover;
+      background-position: center;
+      border-radius: 15px;
+    }
+
+    .hero h2 {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .hero span {
+      color: #7c3aed;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #bbb;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: #7c3aed;
+      padding: 12px 25px;
+      border-radius: 30px;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #9f67ff;
+    }
+
+    /* Sections */
+    section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Services */
+    .services {
+      padding: 80px 40px;
+      border-radius: 10px;
+      background: #000;
+      text-align: center;
+    }
+
+    .services h3 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #222;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card h4 {
+      margin-bottom: 15px;
+      color: #7c3aed;
+    }
+
+    /* Projects */
+    .projects {
+      padding: 80px 40px;
+      border-radius: 5px;
+      text-align: center;
+      background: #101010;
+    }
+
+    .projects h3 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .project-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project {
+      background: #222;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .project:hover {
+      transform: scale(1.05);
+    }
+
+    .project img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project .info {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .project h4 {
+      color: #7c3aed;
+      margin-bottom: 10px;
+    }
+
+    /* About */
+    .about {
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .about h3 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      color: #bbb;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      padding: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .hero h2 {
+        font-size: 32px;
+      }
+    }
   </style>
 </head>
-  <script>
-  function toggleMenu() {
-    document.getElementById("nav-links").classList.toggle("show");
-  }
-    function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  menu.classList.toggle("open");
-}
-
-// sabhi links ke liye close event
-document.querySelectorAll(".mobile-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.getElementById("mobileMenu").classList.remove("open");
-  });
-});
-
-</script>
-
 <body>
-
   <!-- Navbar -->
-<!--   <nav>
+  <nav>
     <div class="logo">
-      <a href="#"><img src="logo.png" alt="Innvotech Solutions Logo"></a>
+      <a href="#"><img src="logo.png" alt="Innvotech Solutions Logo" /></a>
     </div>
-    <ul>
+    <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-  </nav> -->
-<!--   <nav>
-  <div class="logo">
-    <a href="#"><img src="logo.png" alt="Innvotech Solutions Logo"></a>
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-  <ul id="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav> -->
-  <header class="navbar">
-  <div class="logo">
-    <img src="logo.png" alt="Logo" />
-  </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    &#9776;
-  </div>
-</header>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+  </nav>
 
-<nav class="mobile-menu" id="mobileMenu">
-  <a href="#services">Services</a>
-  <a href="#projects">Projects</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
 
   <!-- Hero -->
   <section class="hero show">
     <h2>We Build <span>Web Solutions</span></h2>
-    <p>Innvotech helps businesses grow with modern, scalable, and stunning digital experiences.</p>
-    <button class="btn" onclick="document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });">
-  Get Started
-</button>
-
+    <p>
+      Innvotech helps businesses grow with modern, scalable, and stunning
+      digital experiences.
+    </p>
+    <button
+      class="btn"
+      onclick="document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });"
+    >
+      Get Started
+    </button>
   </section>
 
   <!-- Services -->
@@ -277,42 +325,66 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
     <div class="service-cards">
       <div class="card">
         <h4>🌐 Web Development</h4>
-        <p>Custom, responsive websites built for performance and user experience.</p>
+        <p>
+          Custom, responsive websites built for performance and user
+          experience.
+        </p>
       </div>
       <div class="card">
         <h4>🎨 UI/UX Design</h4>
-        <p>Modern, user-friendly interfaces designed to impress and engage clients.</p>
+        <p>
+          Modern, user-friendly interfaces designed to impress and engage
+          clients.
+        </p>
       </div>
       <div class="card">
         <h4>🚀 SEO & Growth</h4>
-        <p>Optimized strategies to help your business rank higher and grow faster.</p>
+        <p>
+          Optimized strategies to help your business rank higher and grow
+          faster.
+        </p>
       </div>
     </div>
   </section>
 
- <!-- Projects -->
+  <!-- Projects -->
   <section id="projects" class="projects">
     <h3>Our Projects</h3>
     <div class="project-cards">
       <div class="project">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Business Website">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+          alt="Business Website"
+        />
         <div class="info">
           <h4>Corporate Website</h4>
-          <p>Complete responsive business portfolio for a corporate client.</p>
+          <p>
+            Complete responsive business portfolio for a corporate client.
+          </p>
         </div>
       </div>
       <div class="project">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="E-commerce Store">
+        <img
+          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+          alt="E-commerce Store"
+        />
         <div class="info">
           <h4>E-commerce Platform</h4>
-          <p>Online shopping store with product management and secure payments.</p>
+          <p>
+            Online shopping store with product management and secure payments.
+          </p>
         </div>
       </div>
       <div class="project">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Startup Landing">
+        <img
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+          alt="Startup Landing"
+        />
         <div class="info">
           <h4>Startup Landing Page</h4>
-          <p>Modern landing page design to capture leads and boost conversions.</p>
+          <p>
+            Modern landing page design to capture leads and boost conversions.
+          </p>
         </div>
       </div>
     </div>
@@ -322,9 +394,9 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
   <section id="about" class="about">
     <h3>Why Choose Innvotech?</h3>
     <p>
-      At Innvotech, we don’t just build websites — we build digital experiences. 
-      Our team combines creativity, strategy, and cutting-edge technology 
-      to deliver solutions that make your brand stand out.
+      At Innvotech, we don’t just build websites — we build digital experiences.
+      Our team combines creativity, strategy, and cutting-edge technology to
+      deliver solutions that make your brand stand out.
     </p>
   </section>
 
@@ -334,11 +406,24 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
     <p>📩 contact@innvotechsolutions.com | 📞 +92-329-8263764</p>
   </footer>
 
-  <!-- JavaScript: Scroll Animation -->
+  <!-- JavaScript -->
   <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("open");
+    }
+
+    // Auto close mobile menu on click
+    document.querySelectorAll(".mobile-menu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        document.getElementById("mobileMenu").classList.remove("open");
+      });
+    });
+
+    // Scroll animation
     const sections = document.querySelectorAll("section");
     const revealOnScroll = () => {
-      sections.forEach(sec => {
+      sections.forEach((sec) => {
         const rect = sec.getBoundingClientRect();
         if (rect.top < window.innerHeight - 100) {
           sec.classList.add("show");
@@ -348,10 +433,5 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
     window.addEventListener("scroll", revealOnScroll);
     revealOnScroll();
   </script>
-
 </body>
 </html>
-
-
-
-
