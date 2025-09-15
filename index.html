@@ -7,9 +7,48 @@
   <style>
     
     html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
+    }
+
+    /* --- Make Images & Videos Responsive --- */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
+/* --- Responsive Text Scaling --- */
+.hero h2 { font-size: 2.5rem; }   /* default */
+.hero p { font-size: 1rem; }
+
+/* --- Media Queries --- */
+@media (max-width: 992px) {
+  nav { flex-direction: column; padding: 10px 20px; }
+  nav ul { flex-direction: column; margin-top: 10px; }
+  nav ul li { margin: 10px 0; }
+  .hero { padding: 70px 20px; }
+  .hero h2 { font-size: 2rem; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 60px 15px; }
+  .hero h2 { font-size: 1.8rem; }
+  .hero p { font-size: 0.95rem; }
+  .services, .projects, .about { padding: 50px 20px; }
+  .project img { height: 150px; }
+}
+
+@media (max-width: 480px) {
+  .hero h2 { font-size: 1.5rem; }
+  .hero p { font-size: 0.85rem; }
+  .btn { padding: 10px 20px; font-size: 0.9rem; }
+  .service-cards, .project-cards {
+    grid-template-columns: 1fr;  /* stack cards vertically */
+  }
+  nav ul { text-align: center; }
+}
+
+    
     /* --- Reset & Fonts --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background: #0f0f0f; color: #fff; line-height: 1.6; }
@@ -201,4 +240,5 @@
 
 </body>
 </html>
+
 
